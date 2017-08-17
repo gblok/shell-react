@@ -9,7 +9,7 @@ export default props => {
 
     let {route: {params}} = router,
         {page: cid, action = null, id = null} = params,
-        error = h(PageError, {message: 'Disallow action'}),
+        error = h(PageError, {message: 'Action is Disallowed'}),
         doc = null
 
 
