@@ -1,0 +1,60 @@
+header {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 2rem;
+
+}
+
+shell > header {
+
+  background-color: #2B2C31;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .1);
+  padding: .25rem 0;
+  border-bottom: .125rem solid darken(#2B2C31, 2%);
+
+}
+
+logo {
+
+  .userSelect();
+
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+
+  text-transform: uppercase;
+
+  span,
+  abbr {
+    opacity: .7;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+  }
+
+  span {
+    font-size: 2.25rem;
+    color:@b2;
+  }
+
+  abbr {
+    padding-left: 1rem;
+    font-size: 1.5rem;
+  }
+
+  padding: .75rem 1.75rem;
+
+}
+
+amount{
+  display: inline;
+  margin-left: .25em;
+  font-weight: 100;
+  opacity: .7;
+  color: @b2;
+}

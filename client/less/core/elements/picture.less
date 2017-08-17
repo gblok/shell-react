@@ -1,0 +1,61 @@
+img {
+
+  display: block;
+  vertical-align: top;
+  cursor: inherit;
+
+
+  border: 0;
+
+  width: 100%;
+  height: auto;
+
+  max-width: 100%;
+  max-height: 100%;
+  //min-height: 100%;
+
+
+  //image-rendering: auto;
+  //image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+
+  //max-height: 100%;
+  //image-rendering: pixelated;
+
+  /*
+  image-rendering: optimizeSpeed;              // STOP SMOOTHING, GIVE ME SPEED
+  image-rendering: -moz-crisp-edges;           // Firefox
+  image-rendering: -o-crisp-edges;             // Opera
+  image-rendering: -webkit-optimize-contrast;  // Chrome (and eventually Safari)
+  image-rendering: pixelated;                  // Chrome
+  image-rendering: optimize-contrast;          // CSS3 Proposed
+  -ms-interpolation-mode: nearest-neighbor;    // IE8+
+  */
+
+}
+
+picture {
+
+  display: block;
+  vertical-align: top;
+  //position: relative;
+  margin: 0;
+ // padding: 0 0 66.66666666666667% 0;
+  cursor: inherit;
+  max-width: 100%;
+
+  &.empty {
+    padding: 0;
+  }
+
+
+
+  img {
+  //  position: absolute;
+    width: auto;
+    min-height: 100%;
+  }
+
+}
+

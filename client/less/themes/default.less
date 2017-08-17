@@ -1,0 +1,128 @@
+@import '../common';
+
+/*  Responsive
+-------------------------------------------------- */
+
+//@breakMobile: 40rem;
+//@breakTablet: 50rem;
+//@breakDesktop: 60rem;
+//@breakLarge: 70rem;
+//@breakWide: 120px;
+
+@breakMobile: 480px;
+@breakTablet: 768px;
+@breakDesktop: 992px;
+@breakLarge: 1300px;
+@breakWide: 1920px;
+
+@breakPureMax: (@breakMobile  - 1px);
+@breakMobileMax: (@breakTablet  - 1px);
+@breakTabletMax: (@breakDesktop - 1px);
+@breakDesktopMax: (@breakLarge   - 1px);
+@breakLargeMax: (@breakWide    - 1px);
+
+@maxWidth: 75rem;
+
+@pure: ~'only screen and (max-width: @{breakPureMax})';
+@mobile: ~'only screen and (min-width: @{breakMobile}) and (max-width: @{breakMobileMax})';
+@tablet: ~'only screen and (min-width: @{breakTablet}) and (max-width: @{breakTabletMax})';
+@desktop: ~'only screen and (min-width: @{breakDesktop}) and (max-width: @{breakDesktopMax})';
+@large: ~'only screen and (min-width: @{breakLarge}) and (max-width: @{breakLargeMax})';
+@wide: ~'only screen and (min-width: @{breakWide})';
+
+@alongMobile: ~'only screen and (max-width: @{breakMobileMax})';
+@alongTablet: ~'only screen and (max-width: @{breakTabletMax})';
+@alongDesktop: ~'only screen and (max-width: @{breakDesktopMax})';
+@alongLarge: ~'only screen and (max-width: @{breakLargeMax})';
+
+@largestPure: ~'only screen and (min-width: @{breakPureMax})';
+@largestMobile: ~'only screen and (min-width: @{breakTablet})';
+@largestTablet: ~'only screen and (min-width: @{breakDesktop})';
+@largestDesktop: ~'only screen and (min-width: @{breakLarge})';
+
+/*  Font
+-------------------------------------------------- */
+
+@mainFont: 'Roboto';
+
+@pageFont: @mainFont, Helvetica, Arial, 'Liberation Sans', FreeSans, sans-serif;
+@monoFont: Monaco, Menlo, Consolas, 'Courier New', monospace;
+
+@headerFont: @pageFont;
+@formFont: @pageFont;
+@buttonFont: @pageFont;
+
+//@fontSize: .8125rem/13px;
+
+/*  Page
+-------------------------------------------------- */
+@pageFontFamily: @pageFont;
+@pageLineHeight: 1.5rem;
+
+@pageFontSize: 14px;
+@pageFontWeight: normal;
+@pageFontSmoothing: antialiased;
+
+@pageBackgroundColor: #36393E;
+@pageColor: hsla(0, 0%, 100%, .6);
+
+/*  Grid
+-------------------------------------------------- */
+
+@cols: 12;
+
+/*  Headers
+-------------------------------------------------- */
+
+@headerFontWeight: normal;
+@headerFontWeight: 300;
+@headrerLineHeight: normal;
+
+@h1: 2rem;
+@h2: 1.714rem;
+@h3: 1.28rem;
+@h4: 1.071rem;
+@h5: 1rem;
+@h6: 1rem;
+
+/*  Paragraph
+-------------------------------------------------- */
+
+@paragraphMargin: .75rem;
+@paragraphLineHeight: @pageLineHeight;
+
+@borderRadius: 2px;
+
+/*  Color
+-------------------------------------------------- */
+@b1: rgba(114, 137, 218, 1);
+@b2: rgba(117, 132, 87, 1);
+@b3: @b1;
+
+/*@invalid: #f44336;
+@valid: #8BC34A;
+@warning: #fdba2c;
+@normal: @b1;*/
+
+
+
+@green: rgba(67, 181, 129, 1);
+@red: rgba(240, 71, 71, 1);
+@blue: rgba(114, 137, 218, 1);
+@yellow: rgba(250, 166, 26, 1);
+@gray: rgba(66, 70, 77, 1);
+
+@invalid: @red;
+@valid: @green;
+@warning: @yellow;
+@normal: @blue;
+
+
+
+/*  Link
+-------------------------------------------------- */
+
+@linkColor: @b1;
+@linkColorHover: darken(@b1, 20%);
+@linkUnderline: none;
+@linkUnderlineHover: none;

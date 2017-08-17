@@ -1,0 +1,72 @@
+button {
+
+  .userSelect();
+
+  font-family: @formFont;
+  line-height: normal;
+  border: 0;
+  display: flex;
+  align-items: center;
+
+  text-transform: uppercase;
+
+  font-size: 14px;
+  font-weight: @pageFontWeight;
+
+  color: #fff;
+  background-color: @b1;
+
+  border-radius: 2px;
+
+  padding: .5rem 1rem;
+
+  transition: background-color .2s ease-in;
+
+  &:hover {
+    background-color: darken(@b1, 5%);
+
+    .icon{
+      opacity: 1;
+
+    }
+  }
+
+  .icon {
+    position: relative;
+    margin-left: .5rem;
+    opacity: .5;
+  }
+
+  &[disabled] {
+    opacity: .5;
+  }
+}
+
+button.action,
+a.action {
+
+  .userSelect();
+
+  margin-left: 1rem;
+  display: inline-block;
+  vertical-align: bottom;
+  text-decoration: none;
+
+  height: 1.5rem;
+  width: 1.5rem;
+
+  color: @pageColor;
+
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  opacity: .5;
+
+  transition: opacity .2s ease-in;
+
+  &:hover {
+    color: @b1;
+    opacity: .8;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,85 @@
+#success {
+  color: @b2;
+  width: 70px;
+  height: 70px;
+}
+
+#successAnimationCircle {
+  stroke-dasharray: 151px 151px;
+  stroke: @b2;
+}
+
+#successAnimationCheck {
+  stroke-dasharray: 36px 36px;
+  stroke: @b2;
+}
+
+#successAnimationResult {
+  fill: @b2;
+  opacity: 0;
+}
+
+#successAnimation.animated {
+  animation: both scaleAnimation 1s ease-out 0s 1;
+}
+
+#successAnimation.animated #successAnimationCircle {
+  animation: both drawCircle 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1, both fadeOut .3s linear .9s 1;
+}
+
+#successAnimation.animated #successAnimationCheck {
+  animation: both drawCheck 1s cubic-bezier(0.77, 0, 0.175, 1) 0s 1, both fadeOut .3s linear .9s 1;
+}
+
+#successAnimation.animated #successAnimationResult {
+  animation: both fadeIn .3s linear .9s;
+}
+
+@keyframes scaleAnimation {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 151px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  0% {
+    stroke-dashoffset: 36px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

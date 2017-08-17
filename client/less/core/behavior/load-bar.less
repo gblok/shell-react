@@ -1,0 +1,120 @@
+form {
+
+  .load-bar {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+  }
+
+  > .load-bar {
+    top: 0;
+
+  }
+
+  field {
+    .load-bar {
+      bottom: 0;
+      height: 2px
+    }
+  }
+
+}
+
+.load-bar {
+
+  position: relative;
+  display: block;
+  width: 100%;
+  height: .25rem;
+  background-color: @warning;
+  overflow: hidden;
+
+  .b {
+    content: '';
+    display: inline;
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 50%;
+    text-align: center;
+  }
+
+  .b:nth-child(1) {
+    background-color: @invalid;
+    animation: LoadingBar 3s linear infinite;
+  }
+  .b:nth-child(2) {
+    background-color: #fff;
+    animation: LoadingBar 3s linear 1s infinite;
+  }
+  .b:nth-child(3) {
+    background-color: @normal;
+    animation: LoadingBar 3s linear 2s infinite;
+  }
+
+}
+
+@keyframes LoadingBar {
+  from {
+    left: 50%;
+    width: 0;
+    z-index: 100;
+  }
+  33.3333% {
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  to {
+    left: 0;
+    width: 100%;
+  }
+}
+
+@keyframes md-progress-linear-indeterminate-scale-1 {
+
+  0% {
+    transform: scaleX(.1);
+    animation-timing-function: linear
+  }
+
+  36.6% {
+    transform: scaleX(.1);
+    animation-timing-function: cubic-bezier(.33473, .12482, .78584, 1);
+  }
+
+  69.15% {
+    transform: scaleX(.83);
+    animation-timing-function: cubic-bezier(.22573, 0, .23365, 1.37098);
+  }
+
+  to {
+    transform: scaleX(.1);
+  }
+}
+
+@keyframes md-progress-linear-indeterminate-scale-2 {
+  0% {
+
+    transform: scaleX(.1);
+    animation-timing-function: cubic-bezier(.20503, .05705, .57661, .45397);
+  }
+
+  19.15% {
+    transform: scaleX(.57);
+    animation-timing-function: cubic-bezier(.15231, .19643, .64837, 1.00432);
+  }
+
+  44.15% {
+    transform: scaleX(.91);
+    animation-timing-function: cubic-bezier(.25776, -.00316, .21176, 1.38179);
+  }
+
+  to {
+    transform: scaleX(.1)
+  }
+}
+
+//animation: md-progress-linear-indeterminate-scale-2 4s infinite,md-progress-linear-indeterminate-2 4s infinite;
+//animation: md-progress-linear-indeterminate-scale-1 4s infinite,md-progress-linear-indeterminate-1 4s infinite;

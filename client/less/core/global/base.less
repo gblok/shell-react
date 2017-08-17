@@ -1,0 +1,70 @@
+:root {
+
+  box-sizing: border-box;
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+}
+
+html{
+  min-height: 100%;
+}
+html,
+body {
+  margin: 0;
+}
+
+body {
+
+  height: 100%;
+  //for ie 10 scroll don`t over content
+  // -ms-overflow-style: scrollbar;
+  // overflow-y:scroll;
+}
+
+
+@-webkit-viewport {  width: device-width; }
+@-ms-viewport {  width: device-width;  }
+
+article,
+aside,
+main,
+nav,
+header,
+footer,
+section {
+  display: block;
+}
+
+audio,
+video {
+  display: inline-block;
+}
+
+[hidden] {
+  display: none;
+  pointer-events: none;
+}
+
+[disabled] {
+  pointer-events: none;
+}
+
+:focus {
+  outline: none;
+}
+
+a {
+
+  color: @linkColor;
+  text-decoration: @linkUnderline;
+
+  &:hover{
+    text-decoration:  @linkUnderlineHover;
+    color: @linkColorHover
+  }
+
+}
+
