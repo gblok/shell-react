@@ -92,7 +92,7 @@ export default class extends Component {
             upsert(getCollection(cid), res)
         }
 
-        await delay(3000)
+        await delay(1000)
         this.setState({isSuccess, isPending: false})
 
     }
@@ -127,7 +127,7 @@ export default class extends Component {
             //     : Reflect.deleteProperty(field, 'val')
 
 
-            field =  bindValidate(field)
+            bindValidate(field)
 
             return h(tag, {field})
         }

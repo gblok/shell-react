@@ -1,6 +1,6 @@
 {
   "restartable": "rs",
-  "verbose": false,
+  "verbose": true,
   "watchInterval": 10000,
   "ignore": [
     "static"
@@ -12,8 +12,6 @@
     "server"
   ],
   "env": {
-    "IS_SERVER": true,
-    "IS_CLIENT": false,
     "NODE_ENV": "development",
     "DEBUG": false
   },
