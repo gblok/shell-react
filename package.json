@@ -40,13 +40,13 @@
     "less-loader": "",
     "less-plugin-autoprefix": "",
     "less-plugin-clean-css": "",
+    "nodemon": "",
+    "pug": "",
     "style-loader": "",
     "svg-sprite-loader": "",
     "svgo-loader": "",
     "webpack": "",
-    "webpack-dev-server": "",
-    "nodemon": "",
-    "pug": ""
+    "webpack-dev-server": ""
   },
   "babel": {
     "presets": [
@@ -65,6 +65,7 @@
     ]
   },
   "scripts": {
+    "process": "pm2 start ./.etc/process.yml --env development",
     "pm2": "pm2 start ./.etc/pm2.json --env production",
     "nodemon": "nodemon --config ./.etc/nodemon.json ./.etc/server.js",
     "prod": "webpack --config ./.etc/prod.babel.js --env production",

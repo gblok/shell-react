@@ -1,0 +1,7 @@
+apps:
+  name: shell-react
+  script: ./.etc/server.js
+  mode: fork
+  interpreter: node
+  env:
+    NODE_ENV: development

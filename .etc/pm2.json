@@ -3,7 +3,7 @@
     {
       "cwd": "./",
       "name": "shell-react",
-      "script": "server/index.js",
+      "script": "./server.js",
       "watch": [
         "server",
         "shared"
