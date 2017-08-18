@@ -1,6 +1,6 @@
 apps:
   #cwd: ./
-  #merge_logs: true
+
   #instances: -1
   name: shell-react
   script: .etc/server.js
@@ -12,6 +12,7 @@ apps:
   error_file: logs/process_err.log
   out_file: logs/process_out.log
   pid_file: logs/process_pid.log
+  merge_logs: true
   ignoreWatch:
       - '[\\/\\\\]\\./'
       - node_modules
