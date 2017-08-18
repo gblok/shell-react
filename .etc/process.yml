@@ -1,7 +1,23 @@
 apps:
+  #cwd: ./
+  #merge_logs: true
+  #instances: -1
   name: shell-react
-  script: ./.etc/server.js
+  script: .etc/server.js
   mode: fork
-  interpreter: node
+  max_restarts: 2
+  watch:
+    - server,
+    - shared
+  error_file: logs/process_err.log
+  out_file: logs/process_out.log
+  pid_file: logs/process_pid.log
+  ignoreWatch:
+      - '[\\/\\\\]\\./'
+      - node_modules
+  interpretator: node
+  update-env: true
   env:
-    NODE_ENV: prodaction
+      NODE_ENV: development
+  env_:
+      NODE_ENV: production

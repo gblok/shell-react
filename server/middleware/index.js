@@ -6,10 +6,8 @@ import etag from 'koa-etag'
 import favicon from 'koa-favicon'
 import helmet from 'koa-helmet'
 import bodyParser from 'koa-bodyparser'
-// import cors from 'koa2-cors'
-
-
-import {STATIC, allowCollections} from '../../shared/config/server'
+import {allowCollections, STATIC} from '../../shared/config/server'
+//import cors from 'koa2-cors'
 
 export default () => compose([
     compress(),
@@ -22,9 +20,9 @@ export default () => compose([
     serve(STATIC),
     favicon(),
     helmet(),
+   // cors(),
     logger()
 ])
-
 
 
 export async function allowCid(ctx, next) {
