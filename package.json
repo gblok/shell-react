@@ -66,7 +66,7 @@
     ]
   },
   "scripts": {
-    "process": "pm2 start ./.etc/process.yml",
+    "process": "pm2 restart ./.etc/process.yml --env development --update-env",
     "pm2": "pm2 start ./.etc/pm2.json --env production",
     "nodemon": "nodemon --config ./.etc/nodemon.json ./.etc/server.js",
     "prod": "webpack --config ./.etc/prod.babel.js --env production",

@@ -16,8 +16,9 @@ apps:
       - '[\\/\\\\]\\./'
       - node_modules
   interpretator: node
-  update-env: true
   env:
       NODE_ENV: development
-  env_:
-      NODE_ENV: production
+  env_development:
+      NODE_ENV: development
+  env_production:
+        NODE_ENV: production
