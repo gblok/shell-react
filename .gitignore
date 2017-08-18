@@ -10,3 +10,4 @@ tmp
 package-lock.json
 *.loki
 *.db
+*.log
