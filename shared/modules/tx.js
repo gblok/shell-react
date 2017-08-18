@@ -1,6 +1,6 @@
 import * as R from '../reducers'
 import {CACHE_LIFE_TIME, dbID} from '../config'
-import {_force, fetch, getCollection, hub, schemes, upsert, clearSchema} from '../modules'
+import {_force, fetch, getCollection, hub, schemes, upsert} from '../modules'
 
 const Obj = Object.create(null)
 
