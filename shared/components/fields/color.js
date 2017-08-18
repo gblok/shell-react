@@ -16,16 +16,16 @@ export default class extends Component {
             dom = variants.map(v => {
 
                 let {value, label} = v,
-                    isActive = value === val,
-                    checked = isActive ? 'checked' : null
+                    isActive = value === val
 
-                return h('label', {key: value + label, className: value,}, [
+
+                return h('label', {className: value,}, [
                     h('input', {
                         name,
                         onChange,
                         type: 'radio',
                         value,
-                        checked
+                        checked: isActive ? 'checked' : false
                     }),
                     h(Svg, {id: isActive ? 'radio-checked' : 'radio'}),
                     h('key', label)

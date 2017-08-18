@@ -67,17 +67,21 @@ export default class extends Component {
     async send() {
 
 
-
-        this.setState({isPending: true})
-
-
         let {doc = null} = this.props,
             {cid} = this.schema,
             formData = this.formData,
-            isSuccess = false
+            isSuccess = false,
+            coll = getCollection(cid)
 
-        if (doc)
+
+        if (doc) {
             Reflect.set(formData, dbID, Reflect.get(doc, dbID))
+            // optimistic update
+            upsert(coll, Object.assign(doc, formData))
+        }
+
+
+        this.setState({isPending: true})
 
 
         let res = await fetch({
@@ -89,15 +93,15 @@ export default class extends Component {
 
         if (res) {
             isSuccess = true
+            // server sync update
             upsert(getCollection(cid), res)
         }
+
 
         await delay(1000)
         this.setState({isSuccess, isPending: false})
 
     }
-
-
 
 
     render() {
@@ -111,14 +115,13 @@ export default class extends Component {
 
         const buildField = field => {
 
-            let {type = null, field:fieldName} = field,
+            let {type = null, field: fieldName} = field,
                 tag = Reflect.has(Fields, type)
                     ? Reflect.get(Fields, type)
                     : Reflect.get(Fields, 'text')
 
 
-
-            if(doc && Reflect.has(doc, fieldName))
+            if (doc && Reflect.has(doc, fieldName))
                 Reflect.set(field, 'val', Reflect.get(doc, fieldName))
 
 
