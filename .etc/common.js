@@ -22,7 +22,7 @@ export const CommonLoaders = opts => [
                 presets: [
                     //'flow',
                     ['env', {
-                        'modules': false,
+                        //'modules': false,
                         'loose': true
                     }]
                 ],

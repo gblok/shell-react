@@ -9,8 +9,7 @@ export default env => {
         node: {fs: 'empty'},
         performance: false,
         entry: {
-            client: ['./client', './client/sprite'],
-            svg: ['./client/sprite'],
+            client: ['./client','./client/sprite'],
             themes: ['./client/less/themes/default']
         },
         module: {
