@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import Primus from 'Primus'
 import {API, APP, PORT, STATIC} from '../shared/config/server'
 import middleware from './middleware'
 import routes from './routes'
@@ -6,8 +7,12 @@ import {init} from '../shared/modules/init'
 
 
 const app = new Koa
+const primus = new Primus(app, {transformer: 'uws'})
 
 init()
+
+primus.library()
+primus.save(`${STATIC}/assets/js/ws.js`)
 
 app
     .use(middleware())
@@ -19,10 +24,7 @@ app
 
 //ToDo ws example
 
-// const primus = new Primus(app, {transformer: 'uws'})
-// import Primus from 'Primus'
-// //primus.library()
-// primus.save(`${STATIC}/assets/js/ws.js`)
+
 //
 // primus.on('connection', spark => {
 //     console.log('connection')
