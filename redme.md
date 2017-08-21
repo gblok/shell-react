@@ -2,6 +2,7 @@ React-Shell
 
 1 setup
 npm run i
+
 2 build dll (vendor lib)
 npm run dll
 
@@ -13,3 +14,9 @@ npm run nodemon
 
 5 run client-side Dev App webpack-dev-server (on 127.0.0.1:8888) -> depends run server-side for API req on 127.0.0.1:8787
 npm run dev
+
+
+//ToDO make ws example
+//ToDo handle error for FORM UI
+
+Best regards
