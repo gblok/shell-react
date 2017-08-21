@@ -1,6 +1,6 @@
 {
   "name": "shell-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "eventemitter2": "",
@@ -19,12 +19,12 @@
     "lokijs": "",
     "most": "",
     "page": "",
-    "primus": "^7.1.0",
+    "primus": "",
     "react": "",
     "react-dom": "",
     "react-hyperscript": "",
     "superagent": "",
-    "uws": "^8.14.1",
+    "uws": "",
     "validator": "",
     "webfontloader": ""
   },
