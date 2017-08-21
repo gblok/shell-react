@@ -1,14 +1,16 @@
 import {app$, Component, h, init} from '../../modules'
 import {Header, Loader, Main} from '../../components'
-
+import {socket} from '../../modules/socket'
 
 export default class extends Component {
 
     state = {isInit: IS_SERVER}
 
     componentDidMount() {
+
         app$.observe(state => this.setState({...state}))
         init()
+        socket.connect()
     }
 
     render() {

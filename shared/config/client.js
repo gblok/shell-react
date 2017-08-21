@@ -1,10 +1,17 @@
 import path from 'path'
+import {SOCKET_HOST, SOCKET_PORT} from './server'
 
 // export const IS_DEV = process.env.NODE_ENV === 'development'
 export const IS_CLIENT = true
 export const IS_SERVER = !IS_CLIENT
 
 export const DEV_PORT = 8888
+
+
+export const SOCKET = {
+    url: `${SOCKET_HOST}}`,
+    //opts: { transformer: 'uws' }
+}
 
 
 //paths

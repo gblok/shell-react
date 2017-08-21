@@ -1,13 +1,13 @@
 import compose from 'koa-compose'
 import logger from 'koa-logger'
 import serve from 'koa-static'
-import compress from 'koa-compress'
 import etag from 'koa-etag'
 import favicon from 'koa-favicon'
 import helmet from 'koa-helmet'
 import bodyParser from 'koa-bodyparser'
 import {allowCollections, STATIC} from '../../shared/config/server'
-//import cors from 'koa2-cors'
+import compress from 'koa-compress'
+import cors from 'koa2-cors'
 
 export default () => compose([
     compress(),
@@ -20,7 +20,7 @@ export default () => compose([
     serve(STATIC),
     favicon(),
     helmet(),
-   // cors(),
+    cors(),
     logger()
 ])
 
