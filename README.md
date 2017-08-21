@@ -1,7 +1,7 @@
 # React-Shell ISO APP
 
 1. setup<br />
-`npm run i`
+`npm i`
 
 2. build dll (vendor lib)<br />
 `npm run dll`
