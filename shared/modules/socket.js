@@ -1,3 +1,5 @@
+import {SOCKET_PORT, SOCKET_HOST} from '../config/server'
+
 class Socket {
 
     socket = null
@@ -5,7 +7,7 @@ class Socket {
     connect() {
 
         console.log('connect')
-        this.socket = new Primus('/')
+        this.socket = new Primus('//localhost:8787')
 
         this.events()
 
