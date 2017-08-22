@@ -1,4 +1,4 @@
-import {SOCKET_PORT, SOCKET_HOST} from '../config/server'
+import {IS_DEV} from '../config'
 
 class Socket {
 
@@ -6,7 +6,7 @@ class Socket {
 
     connect() {
 
-        console.log('connect')
+        console.log('connect', IS_DEV)
         this.socket = new Primus('//localhost:8787')
 
         this.events()
@@ -25,8 +25,19 @@ class Socket {
 
     events() {
 
-        this.socket.on('data', function received(data) {
-          console.log('Client', {data})
+        const primus = this.socket
+
+        primus.on('data', data => {
+            console.log('Client', {data})
+        })
+
+        primus.on('hi', data => {
+
+            console.log('hi', {data})
+
+            // if (primus.reserved(data.args[0])) return
+
+            // primus.emit.apply(primus, data.args)
         })
 
 

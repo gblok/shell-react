@@ -29,12 +29,19 @@ primus.on('initialised', () => console.log('initialised'))
 
 
 primus.on('connection', spark => {
-    spark.on('data', function received(data) {
-        console.log(spark.id, 'received message:', data)
+
+
+    spark.on('data', data => {
+        console.log(spark.id, {data})
         //spark.write(data)
         primus.write(data)
     })
 
+
+})
+
+primus.on('hi', data => {
+    console.log('hi message:', data)
 })
 
 

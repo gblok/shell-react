@@ -1,7 +1,7 @@
 import path from 'path'
 import {SOCKET_HOST, SOCKET_PORT} from './server'
 
-// export const IS_DEV = process.env.NODE_ENV === 'development'
+export const IS_DEV = process.env.NODE_ENV === 'development'
 export const IS_CLIENT = true
 export const IS_SERVER = !IS_CLIENT
 

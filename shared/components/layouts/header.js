@@ -10,12 +10,12 @@ export default props => h('header',
         ]),
         h('button', {
             onClick: e => {
-                socket.emit('data', `${Date.now()} emit`)
+                socket.emit('hi', `${Date.now()}`)
             }
         }, 'emit'),
         h('button', {
             onClick: e => {
-                socket.write(`${Date.now()} write`)
+                socket.write(`${Date.now()}`)
             }
         }, 'write')
     ])
