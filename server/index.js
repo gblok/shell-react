@@ -15,7 +15,7 @@ app
     .use(middleware())
     .use(routes(API))
     .use(routes(APP))
-// .use(ctx => ctx.status = 404)
+    .use(ctx => ctx.status = 404)
 //.listen(PORT, () => console.log(`${String.fromCharCode(9763)} ${PORT}`))
 
 
@@ -24,25 +24,10 @@ const server = http.createServer(app.callback()),
 
 primus.library()
 
+primus
+    .on('initialised', () => console.log('initialised'))
+    .on('connection', spark => spark.on('data', data => primus.write(data)))
 
-primus.on('initialised', () => console.log('initialised'))
-
-
-primus.on('connection', spark => {
-
-
-    spark.on('data', data => {
-        console.log(spark.id, {data})
-        //spark.write(data)
-        primus.write(data)
-    })
-
-
-})
-
-primus.on('hi', data => {
-    console.log('hi message:', data)
-})
 
 
 server.listen(PORT, () => console.log(`${String.fromCharCode(9763)} ${PORT}`))
