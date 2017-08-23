@@ -69,10 +69,10 @@ export const bindValidate = field => {
 
 export const errors = new Map(
     [
-        ['req', () => `is required`],
-        ['min', ([min]) => `is too short (Min. ${min} characters required)`],
-        ['max', ([max]) => `is too long (Max. ${max} characters allowed)`],
-        ['isAlphaNumeric',() => `may only contain alpha-numeric characters`],
+        ['req', () => `This field is required`],
+        ['min', ([min]) => `No least ${min} characters`],
+        ['max', ([max]) => `No more than ${max} characters`],
+        ['isAlphaNumeric',() => `May only contain alpha-numeric characters`],
     ]
 )
 
@@ -84,3 +84,4 @@ export const verify = new Map(
         ['isAlphaNumeric',(val, [locale]) => isAlphanumeric(val, locale)],
     ]
 )
+
