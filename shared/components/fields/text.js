@@ -5,13 +5,18 @@ export default class extends Component {
     render() {
 
         let {field} = this.props,
-            {val: value = null, label} = field,
+            {val: value = null, label, validate = null, isInvalid, errors = null} = field,
+            hint = isInvalid ? h('hint', {className: 'hint'}, errors ? errors.values().next().value : 'error') : null,
             onInput = e => {
+
                 Reflect.set(field, 'val', e.target.value)
-                field.validate()
+
+                if (validate)
+                    validate()
+
                 this.forceUpdate()
             },
-            dom = h('label', {className: 'item'}, [
+            dom = h('label', {className: isInvalid ? 'invalid item' : 'item'}, [
                 h('input', {
                     onInput,
                     type: 'text',
@@ -20,7 +25,8 @@ export default class extends Component {
                     value
                 }),
                 h('.key', label),
-                h('.bar')
+                h('.bar'),
+                hint
             ])
 
 

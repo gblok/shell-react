@@ -23,13 +23,36 @@ export const bindValidate = field => {
         let {val = null, errors: fieldErrors, multi = null} = field
 
 
-        if (rules.size && !multi) {
+        if (rules.size) {
 
-            for (let [rule, arg] of rules)
-                if (!verify.get(rule)(val, arg)) {
-                    Reflect.set(field, 'isInvalid', true)
-                    fieldErrors.set(rule, errors.get(rule)(arg))
+            for (let [rule, arg] of rules) {
+
+                if (multi) {
+
+                    if(!val.size){
+                        console.log('not req')
+                        Reflect.set(field, 'isInvalid', true)
+                        fieldErrors.set(rule, errors.get('req')())
+                    }
+
+
+                    for (let v of val)
+                        if (!verify.get(rule)(v, arg)) {
+                            Reflect.set(field, 'isInvalid', true)
+                            fieldErrors.set(rule, errors.get(rule)(arg))
+                        }
+
+
+                } else {
+
+                    if (!verify.get(rule)(val, arg)) {
+                        Reflect.set(field, 'isInvalid', true)
+                        fieldErrors.set(rule, errors.get(rule)(arg))
+                    }
                 }
+
+            }
+
 
             Reflect.set(field, 'errors', fieldErrors)
         }

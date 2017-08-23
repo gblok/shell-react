@@ -15,12 +15,9 @@ export default class extends Component {
 
         let {isInit} = this.state,
             content = isInit
-                ? [h(Main)]
+                ? [h(Header), h(Main)]
                 : [h(Loader)]
 
         return h('shell', content)
     }
 }
-
-
-//[h(Header), h(Main)]

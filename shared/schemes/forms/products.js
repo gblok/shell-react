@@ -11,6 +11,7 @@ export default {
             field: 'color',
             label: 'Product color',
             multi: true,
+            validation: 'req',
             type: 'multiColor',
             variants: [
                 {value: 'red', label: 'red'},

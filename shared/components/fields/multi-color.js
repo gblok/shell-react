@@ -8,24 +8,24 @@ export default class extends Component {
 
         let {field} = this.props,
             {variants} = field,
-            {field: name, label: fieldLabel, val} = field
-
-        console.log('field',{val})
-
-        let onChange = e => {
-
-                let value = e.target.value
+            {field: name, label: fieldLabel, isInvalid, val, validate = null, errors = null} = field,
+            error = isInvalid ? h('error', errors ? errors.values().next().value : 'error') : null,
+            onChange = e => {
 
                 e.target.checked
-                    ? val.add(value)
-                    : val.delete(value)
+                    ? val.add(e.target.value)
+                    : val.delete(e.target.value)
+
+                if (validate)
+                    validate()
 
                 this.forceUpdate()
             },
             dom = variants.map(v => {
 
-                let {value, label} = v,
+                let {value, label, isInvalid} = v,
                     isActive = val.has(value)
+
 
                 return h('label', {className: value}, [
                     h('input', {
@@ -43,6 +43,7 @@ export default class extends Component {
         return h('field', {className: 'color'}, [
             h('name', fieldLabel),
             h('variants', [dom]),
+            error
         ])
 
     }

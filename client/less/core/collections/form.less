@@ -1,7 +1,5 @@
 @lp: 1rem;
 
-
-
 form {
 
   position: relative;
@@ -11,7 +9,7 @@ form {
   width: 100%;
   padding: @lp*2;
 
-  border-radius:  0 0 2px;
+  border-radius: 0 0 2px;
 
   background-color: fade(#fff, 5%);
 
@@ -61,6 +59,7 @@ field.color {
 
   position: relative;
   align-items: center;
+  padding-bottom: 2rem;
 
   .green {
     color: @green;
@@ -71,8 +70,6 @@ field.color {
   .blue {
     color: @blue;
   }
-
-
 
   key {
     display: inline-block;
@@ -115,6 +112,13 @@ field.color {
     display: flex;
     align-items: center;
     flex-direction: row;
+  }
+  error{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: .75rem 0;
+    font-size: 11px;
   }
 }
 
@@ -167,22 +171,29 @@ field {
     .hint {
       pointer-events: none;
       position: absolute;
-      left: 0;
     }
 
-    .key {
-
+    .key,
+    .hint {
       top: 0;
       opacity: .8;
-
       transition: all .1s ease;
       transform-origin: 0 0;
       backface-visibility: hidden;
     }
 
+    .key {
+      left: 0;
+    }
+
+    .hint {
+      right: 0;
+    }
+
     .bar {
 
       bottom: 0;
+      left: 0;
       width: 100%;
       height: 2px;
 
@@ -203,10 +214,14 @@ field {
     }
 
     input,
-    textarea,
-    .key {
-
+    textarea{
       width: 100%;
+    }
+
+    input,
+    textarea,
+    .key,
+    .hint {
 
       line-height: @lp * 1.25;
 
@@ -223,18 +238,6 @@ field {
       background-color: rgba(0, 0, 0, 0);
       box-shadow: none;
 
-    }
-
-    .hint {
-      padding: 0;
-      outline: 0;
-      border: 0;
-      margin: 0;
-      font-size: 11px;
-      //opacity: 1;
-      width: 100%;
-      font-family: @formFont;
-      //font-weight: 300;
     }
 
     textarea {
@@ -276,7 +279,8 @@ field {
 
   .item.invalid {
 
-    > .key {
+    > .key,
+    > .hint {
 
       // transition: none;
       color: #fff;
@@ -290,7 +294,9 @@ field {
 
   .item.invalid,
   .item.valid {
-    .key {
+
+    .key,
+    .hint {
       opacity: .7;
     }
   }
@@ -299,21 +305,19 @@ field {
     > .bar {
       background-color: @invalid;
     }
-    .key {
-      color: @invalid;
-    }
+
+    .key,
     .hint {
       color: @invalid;
     }
+
   }
   .item.valid {
     > .bar {
       background-color: @valid;
     }
-    .key {
-      color: @valid;
-    }
-    .hint {
+    .key,
+    .hint{
       color: @valid;
     }
 
@@ -342,10 +346,10 @@ field.checkbox {
 
   }
 
-  input:focus + .icon,
-  input:focus + .icon + key {
-    color: tomato;
-  }
+  //input:focus + .icon,
+  //input:focus + .icon + key {
+  //  color: @invalid;
+  //}
 
   key {
     display: inline;
