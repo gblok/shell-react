@@ -1,3 +1,8 @@
+tags {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 tag {
 
   .userSelect;
@@ -20,4 +25,8 @@ tag {
   &.blue {
     background-color: @blue;
   }
+}
+
+tag + tag {
+  margin-left: .5em;
 }

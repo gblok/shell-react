@@ -33,8 +33,8 @@ export default class extends Component {
 
         let formData = Object.create(null)
 
-        for (let {field, val} of this.fields)
-            Reflect.set(formData, field, val)
+        for (let {field, val, multi = null} of this.fields)
+            Reflect.set(formData, field, multi ? Array.from(val.values()) : val)
 
         return formData || null
     }
@@ -74,9 +74,9 @@ export default class extends Component {
             coll = getCollection(cid)
 
 
+        // optimistic update
         if (doc) {
             Reflect.set(formData, dbID, Reflect.get(doc, dbID))
-            // optimistic update
             upsert(coll, Object.assign(doc, formData))
         }
 
@@ -91,9 +91,9 @@ export default class extends Component {
         })
 
 
+        // server sync update
         if (res) {
             isSuccess = true
-            // server sync update
             upsert(getCollection(cid), res)
         }
 
@@ -115,26 +115,17 @@ export default class extends Component {
 
         const buildField = field => {
 
-            let {type = null, field: fieldName} = field,
-                tag = Reflect.has(Fields, type)
-                    ? Reflect.get(Fields, type)
-                    : Reflect.get(Fields, 'text')
+            let {type = null, field: fieldName, multi = null} = field,
+                tag = Reflect.has(Fields, type) ? Reflect.get(Fields, type) : Reflect.get(Fields, 'text')
+
+            if (multi)
+                Reflect.set(field, 'val', new Set)
 
 
-            switch (type){
-                case 'colorMulti':
-                    Reflect.set(field, 'val', new Set)
-                    break
+            if (doc && Reflect.has(doc, fieldName)) {
+                let val = Reflect.get(doc, fieldName)
+                Reflect.set(field, 'val', multi ? new Set([...val]) : val)
             }
-
-
-            if (doc && Reflect.has(doc, fieldName))
-                Reflect.set(field, 'val', Reflect.get(doc, fieldName))
-
-
-            // doc && Reflect.has(doc, field.field)
-            //     ? Reflect.set(field, 'val', Reflect.get(doc, field.field) || Reflect.deleteProperty(field, 'val'))
-            //     : Reflect.deleteProperty(field, 'val')
 
 
             bindValidate(field)

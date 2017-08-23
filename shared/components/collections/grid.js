@@ -80,6 +80,7 @@ export default class extends Component {
                     cell = Formats.get(format)(col, cell)
 
 
+
                 let className = colName
 
                 if (align)

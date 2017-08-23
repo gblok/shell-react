@@ -14,6 +14,7 @@ export default {
             field: 'color',
             label: 'Color',
             format: 'multiTag',
+            multi: true,
             align: 'center'
         },
         {

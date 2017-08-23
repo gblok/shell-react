@@ -8,24 +8,26 @@ export default class extends Component {
 
         let {field} = this.props,
             {variants} = field,
-            {field: name, label: fieldLabel, val= null} = field,
-            onChange = e => {
+            {field: name, label: fieldLabel, val} = field
 
-                console.log(e.target.checked)
+        console.log('field',{val})
+
+        let onChange = e => {
+
+                let value = e.target.value
+
+                e.target.checked
+                    ? val.add(value)
+                    : val.delete(value)
 
                 this.forceUpdate()
-
             },
             dom = variants.map(v => {
 
-
                 let {value, label} = v,
-                    isActive = val && val.has(value) ? true : false
+                    isActive = val.has(value)
 
-                console.log({val})
-
-
-                return h('label', {className: value,}, [
+                return h('label', {className: value}, [
                     h('input', {
                         name,
                         onChange,
@@ -36,8 +38,6 @@ export default class extends Component {
                     h(Svg, {id: isActive ? 'checkbox-checked' : 'checkbox'}),
                     h('key', label)
                 ])
-
-
             })
 
         return h('field', {className: 'color'}, [

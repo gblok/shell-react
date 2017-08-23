@@ -20,10 +20,10 @@ export const bindValidate = field => {
         Reflect.set(field, 'isInvalid', false)
         Reflect.set(field, 'errors', new Map)
 
-        let {val = null, errors:fieldErrors} = field
+        let {val = null, errors: fieldErrors, multi = null} = field
 
 
-        if (rules.size) {
+        if (rules.size && !multi) {
 
             for (let [rule, arg] of rules)
                 if (!verify.get(rule)(val, arg)) {
@@ -33,7 +33,7 @@ export const bindValidate = field => {
 
             Reflect.set(field, 'errors', fieldErrors)
         }
-        
+
         return !Reflect.get(field, 'isInvalid')
     }
 

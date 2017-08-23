@@ -1,5 +1,5 @@
 import {app$, Component, h, init} from '../../modules'
-import {Header, Loader, Main} from '../../components'
+import {Loader, Main} from '../../components'
 
 
 export default class extends Component {
@@ -15,9 +15,12 @@ export default class extends Component {
 
         let {isInit} = this.state,
             content = isInit
-                ? [h(Header), h(Main)]
+                ? [h(Main)]
                 : [h(Loader)]
 
         return h('shell', content)
     }
 }
+
+
+//[h(Header), h(Main)]
