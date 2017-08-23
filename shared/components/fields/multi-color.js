@@ -7,10 +7,14 @@ export default class extends Component {
     render() {
 
         let {field} = this.props,
-            {variants} = field,
-            {field: name, label: fieldLabel, isInvalid, val, validate = null, errors = null} = field,
-            error = isInvalid ? h('error', errors ? errors.values().next().value : 'error') : null,
-            onChange = e => {
+            {field: name, label: fieldLabel, isInvalid, val, validate = null, errors = null, variants} = field,
+            error = isInvalid ? h('error', errors ? errors.values().next().value : 'error') : null
+
+
+        console.log({val})
+
+
+        let onChange = e => {
 
                 e.target.checked
                     ? val.add(e.target.value)
@@ -23,7 +27,7 @@ export default class extends Component {
             },
             dom = variants.map(v => {
 
-                let {value, label, isInvalid} = v,
+                let {value, label} = v,
                     isActive = val.has(value)
 
 
@@ -40,7 +44,7 @@ export default class extends Component {
                 ])
             })
 
-        return h('field', {className: 'color'}, [
+        return h('field', {className: isInvalid ? 'invalid color' : 'color'}, [
             h('name', fieldLabel),
             h('variants', [dom]),
             error

@@ -36,7 +36,7 @@ export default class extends Component {
         for (let {field, val, multi = null} of this.fields)
             Reflect.set(formData, field, multi ? Array.from(val.values()) : val)
 
-        return formData || null
+        return formData
     }
 
 
@@ -118,7 +118,7 @@ export default class extends Component {
             let {type = null, field: fieldName, multi = null} = field,
                 tag = Reflect.has(Fields, type) ? Reflect.get(Fields, type) : Reflect.get(Fields, 'text')
 
-            if (multi)
+            if (multi && !Reflect.has(field, 'val'))
                 Reflect.set(field, 'val', new Set)
 
 
@@ -132,6 +132,7 @@ export default class extends Component {
 
             return h(tag, {field})
         }
+
         const buildActions = () => h('button', 'Submit')
 
 
