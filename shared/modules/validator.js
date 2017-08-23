@@ -72,7 +72,7 @@ export const errors = new Map(
         ['req', () => `This field is required`],
         ['min', ([min]) => `No least ${min} characters`],
         ['max', ([max]) => `No more than ${max} characters`],
-        ['isAlphaNumeric',() => `May only contain alpha-numeric characters`],
+        ['isAlphaNumeric',() => `May only contain alphanumeric characters`],
     ]
 )
 
