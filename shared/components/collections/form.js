@@ -34,7 +34,7 @@ export default class extends Component {
         let formData = Object.create(null)
 
         for (let {field, val, multi = null} of this.fields)
-            Reflect.set(formData, field, multi ? Array.from(val.values()) : val)
+            Reflect.set(formData, field, multi ? Array.from(val.values()).sort() : val)
 
         return formData
     }
