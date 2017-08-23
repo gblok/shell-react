@@ -21,7 +21,7 @@ export default class extends Component {
                     onInput,
                     type: 'text',
                     required: 'required',
-                    AutoComplete: 'off',
+                    autoComplete: 'off',
                     value
                 }),
                 h('.key', label),

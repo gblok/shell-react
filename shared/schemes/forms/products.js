@@ -5,7 +5,7 @@ export default {
             field: 'name',
             label: 'Product name',
             type: 'text',
-            validation: 'req|min,2|max,10'
+            validation: 'req|min,4|max,8|isAlphaNumeric,en-US'
         },
         {
             field: 'color',

@@ -44,7 +44,7 @@ export default class extends Component {
                 ])
             })
 
-        return h('tr', [row])
+        return h('tr', row)
     }
 
 
@@ -53,8 +53,7 @@ export default class extends Component {
         let {cols, cid} = tx,
             dom = []
 
-        for (let doc  of rows.data()) {
-
+        for (let doc of rows.data()) {
             let row = cols.map(col => {
 
                 let {label, field, format = null, align = null} = col,
@@ -63,11 +62,13 @@ export default class extends Component {
                     cell = isActions
                         ? [
                             h('button', {
+                                key: field + 'edit',
                                 title: 'edit',
                                 className: 'action',
                                 onMouseDown: e => EDIT(cid, doc)
                             }, [h(Icon, {id: 'edit'})]),
                             h('button', {
+                                key: field + 'remove',
                                 title: 'remove',
                                 className: 'action',
                                 onMouseDown: e => REMOVE(cid, doc)
@@ -80,7 +81,6 @@ export default class extends Component {
                     cell = Formats.get(format)(col, cell)
 
 
-
                 let className = colName
 
                 if (align)
@@ -89,10 +89,7 @@ export default class extends Component {
 
                 return h('td', {className, 'data-label': label}, [h('span', [cell])])
             })
-
-            dom.push(h('tr', [row]))
-
-
+            dom.push(h('tr', row))
         }
 
 
@@ -117,17 +114,15 @@ export default class extends Component {
             let {legend = '', cid} = tx,
                 isEmpty = !Boolean(coll.count()),
                 head = h('thead', [this.buildHead(tx, coll)]),
-                body = h('tbody', [this.buildBody(tx, coll)])
+                body = h('tbody', this.buildBody(tx, coll))
 
             if (isEmpty)
-                msg = h('success',[
-                    'Empty Collection'
-                ])
+                msg = h('success', 'Empty Collection')
 
 
             header = h('header', [
                 h('h2', [legend || 'legend', h('amount', coll.count())]),
-                h('button', {onMouseDown: e => CREATE(cid)}, 'create')
+                h('button', {key:'createItem', onMouseDown: e => CREATE(cid)}, 'create')
             ])
 
             table = h('table', {className: 'grid'}, [head, body])
@@ -139,38 +134,3 @@ export default class extends Component {
     }
 
 }
-
-
-/*
-buildBody(tx, rows) {
-
-    let {cols, cid} = tx
-
-    return rows.map(doc => {
-
-        let row = cols.map(col => {
-
-            let {label, field} = col,
-                colName = field.toLowerCase(),
-                isActions = colName === '_actions',
-                cell = isActions
-                    ? [
-                        h('button', {
-                            className: 'action',
-                            onMouseDown: e => EDIT(cid, doc)
-                        }, [h(Icon, {id: 'edit'})]),
-                        h('button', {
-                            className: 'action',
-                            onMouseDown: e => REMOVE(cid, doc)
-                        }, [h(Icon, {id: 'trash'})])
-                    ]
-                    : Reflect.get(doc, field)
-
-
-            return h('td', {className: colName, 'data-label': label}, [h('span', [cell])])
-        })
-
-        return h('tr', [row])
-    }).data()
-
-}*/

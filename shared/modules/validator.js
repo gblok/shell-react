@@ -1,4 +1,5 @@
 import isLength from 'validator/lib/isLength'
+import isAlphanumeric from 'validator/lib/isAlphanumeric'
 
 export const bindValidate = field => {
 
@@ -70,7 +71,8 @@ export const errors = new Map(
     [
         ['req', () => `This field is required`],
         ['min', ([min]) => `At least ${min} characters`],
-        ['max', ([max]) => `You can enter up to ${max} characters`]
+        ['max', ([max]) => `You can enter up to ${max} characters`],
+        ['isAlphaNumeric',() => `string contains only letters and numbers`],
     ]
 )
 
@@ -78,6 +80,7 @@ export const verify = new Map(
     [
         ['req', val => isLength(val, {min: 1})],
         ['min', (val, [min]) => isLength(val, {min})],
-        ['max', (val, [max]) => isLength(val, {max})]
+        ['max', (val, [max]) => isLength(val, {max})],
+        ['isAlphaNumeric',(val, [locale]) => isAlphanumeric(val, locale)],
     ]
 )

@@ -5,7 +5,7 @@ import {empty, isObject} from '../../modules/utils'
 
 export default props => {
 
-    let {current: {layout}} = router,
+    let {current: {layout}, route} = router,
         Layouts = layout.map(tag => {
 
             let [tagName, tagOpts] = isObject(tag)
@@ -13,11 +13,11 @@ export default props => {
                 : [`Page${tag}`, empty]
 
             return Reflect.has(C, tagName)
-                ? h(Reflect.get(C, tagName), {...props, ...tagOpts} )
-                : h('PageError', {message:`${tagName} component not found`} )
+                ? h(Reflect.get(C, tagName), {...props, ...tagOpts})
+                : h('PageError', {message: `${tagName} component not found`})
 
         })
 
-    return h('main', [Layouts])
+    return h('main', Layouts)
 
 }
