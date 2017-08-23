@@ -29,7 +29,7 @@ export const bindValidate = field => {
 
                 if (multi) {
 
-                    if(!val.size){
+                    if (!val.size) {
                         console.log('not req')
                         Reflect.set(field, 'isInvalid', true)
                         fieldErrors.set(rule, errors.get('req')())
@@ -72,7 +72,7 @@ export const errors = new Map(
         ['req', () => `This field is required`],
         ['min', ([min]) => `No least ${min} characters`],
         ['max', ([max]) => `No more than ${max} characters`],
-        ['isAlphaNumeric',() => `May only contain alphanumeric characters`],
+        ['isAlphaNumeric', () => `May only contain alphanumeric characters`],
     ]
 )
 
@@ -81,7 +81,7 @@ export const verify = new Map(
         ['req', val => isLength(val, {min: 1})],
         ['min', (val, [min]) => isLength(val, {min})],
         ['max', (val, [max]) => isLength(val, {max})],
-        ['isAlphaNumeric',(val, [locale]) => isAlphanumeric(val, locale)],
+        ['isAlphaNumeric', (val, [locale]) => isAlphanumeric(val, locale)],
     ]
 )
 
