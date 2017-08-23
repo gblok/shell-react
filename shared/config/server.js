@@ -1,6 +1,6 @@
 import path from 'path'
 
-export const PORT = 8787
+export const PORT = 9191
 
 export const STATIC = path.resolve(process.cwd(), 'static')
 export const VIEWS = path.resolve(process.cwd(), 'server', 'views')

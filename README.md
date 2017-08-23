@@ -12,7 +12,7 @@
 4. run server-side App (ssr/api)<br />
 `npm run nodemon`
 
-5. run client-side Dev App webpack-dev-server (on 127.0.0.1:8888) -> depends run server-side for API req on 127.0.0.1:8787<br />
+5. run client-side Dev App webpack-dev-server (on 127.0.0.1:8888) -> depends run server-side for API req on 127.0.0.1:9191<br />
 `npm run dev`
  :fire:
 
