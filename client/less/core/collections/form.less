@@ -113,12 +113,12 @@ field.color {
     align-items: center;
     flex-direction: row;
   }
-  error{
+  error {
     position: absolute;
     top: 0;
     left: 0;
     padding: .75rem 0;
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
@@ -214,7 +214,7 @@ field {
     }
 
     input,
-    textarea{
+    textarea {
       width: 100%;
     }
 
@@ -262,7 +262,9 @@ field {
       }
 
       &:focus + .key,
-      &:valid + .key {
+      &:valid + .key,
+      &:focus + .hint,
+      &:valid + .hint {
         opacity: 1;
         font-size: 12px;
         transform: translateY(-@lp*1.5);
@@ -281,8 +283,6 @@ field {
 
     > .key,
     > .hint {
-
-      // transition: none;
       color: #fff;
       opacity: 1;
       font-size: 12px;
@@ -295,9 +295,11 @@ field {
   .item.invalid,
   .item.valid {
 
-    .key,
-    .hint {
+    .key {
       opacity: .7;
+    }
+    .hint {
+      opacity: 1;
     }
   }
 
@@ -317,7 +319,7 @@ field {
       background-color: @valid;
     }
     .key,
-    .hint{
+    .hint {
       color: @valid;
     }
 
