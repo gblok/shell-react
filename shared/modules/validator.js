@@ -1,6 +1,5 @@
 import isLength from 'validator/lib/isLength'
 
-
 export const bindValidate = field => {
 
 
