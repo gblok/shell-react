@@ -1,5 +1,5 @@
 import {app$, Component, h, init} from '../../modules'
-import {Loader, Main} from '../../components'
+import {Header, Loader, Main} from '../../components'
 
 
 export default class extends Component {
