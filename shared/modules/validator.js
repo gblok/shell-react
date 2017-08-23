@@ -69,10 +69,10 @@ export const bindValidate = field => {
 
 export const errors = new Map(
     [
-        ['req', () => `This field is required`],
-        ['min', ([min]) => `At least ${min} characters`],
-        ['max', ([max]) => `You can enter up to ${max} characters`],
-        ['isAlphaNumeric',() => `string contains only letters and numbers`],
+        ['req', () => `is required`],
+        ['min', ([min]) => `is too short (Min. ${min} characters required)`],
+        ['max', ([max]) => `is too long (Max. ${max} characters allowed)`],
+        ['isAlphaNumeric',() => `may only contain alpha-numeric characters`],
     ]
 )
 
