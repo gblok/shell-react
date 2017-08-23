@@ -13,7 +13,7 @@ export default class extends Component {
     state = {
         isPending: false,
         isSuccess: false,
-        isValid: false
+        isValid: true
     }
 
     componentWillMount() {
@@ -54,8 +54,9 @@ export default class extends Component {
 
         this.validation()
             ? this.send().catch(console.error)
-            : this.forceUpdate()
+            : false
 
+        // this.setState({isValid: false})
     }
 
 
@@ -107,7 +108,7 @@ export default class extends Component {
     render() {
 
         let {doc = null} = this.props,
-            {isPending, isSuccess} = this.state,
+            {isPending, isSuccess, isValid} = this.state,
             {fields, cid} = this.schema,
             dom = [],
             content = null
@@ -133,7 +134,7 @@ export default class extends Component {
             return h(tag, {field})
         }
 
-        const buildActions = () => h('button', 'Submit')
+        const buildActions = () => h('button', {key: cid + 'submit', disabled: isValid ? false : 'disabled'}, 'Submit')
 
 
         if (isSuccess) {
