@@ -54,7 +54,7 @@ export default class extends Component {
 
         this.validation()
             ? this.send().catch(console.error)
-            : console.error('From no valid')
+            : this.forceUpdate()
 
     }
 
