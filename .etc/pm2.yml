@@ -1,6 +1,5 @@
 apps:
   #cwd: ./
-
   #instances: -1
   name: shell-react
   script: .etc/server.js
@@ -18,8 +17,6 @@ apps:
       - node_modules
   interpretator: node
   env:
-      NODE_ENV: development
-  env_development:
       NODE_ENV: development
   env_production:
         NODE_ENV: production

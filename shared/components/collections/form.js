@@ -121,6 +121,13 @@ export default class extends Component {
                     : Reflect.get(Fields, 'text')
 
 
+            switch (type){
+                case 'colorMulti':
+                    Reflect.set(field, 'val', new Set)
+                    break
+            }
+
+
             if (doc && Reflect.has(doc, fieldName))
                 Reflect.set(field, 'val', Reflect.get(doc, fieldName))
 

@@ -13,7 +13,7 @@ export default {
         {
             field: 'color',
             label: 'Color',
-            format: 'tag',
+            format: 'multiTag',
             align: 'center'
         },
         {
