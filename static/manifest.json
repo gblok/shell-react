@@ -1,0 +1,30 @@
+{
+  "name": "Shell-React",
+  "short_name": "Shell-React",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#36393E",
+  "theme_color": "#36393E",
+  "icons": [
+    {
+      "src": "img/touch/92x92.png",
+      "sizes": "92x92",
+      "type": "image/png"
+    },
+    {
+      "src": "img/touch/144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "img/touch/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/touch/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
