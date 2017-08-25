@@ -27,16 +27,6 @@ self.addEventListener('install', e => {
     )
 })
 
-self.addEventListener('controllerchange', e => {
-
-    console.log('controllerchange')
-
-    self.controller.addEventListener('statechange', function () {
-        console.warn('offlineNotification')
-    })
-})
-
-
 self.addEventListener('activate', e => {
     console.log('sw activate')
 
@@ -48,6 +38,7 @@ self.addEventListener('activate', e => {
             .then(toDelete => Promise
                 .all(toDelete.map(c => caches.delete(c)))
                 .then(() => self.clients.claim()))
+            .catch(err => console.error(err))
     )
 
 
