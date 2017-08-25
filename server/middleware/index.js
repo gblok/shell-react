@@ -6,8 +6,10 @@ import etag from 'koa-etag'
 import favicon from 'koa-favicon'
 import helmet from 'koa-helmet'
 import bodyParser from 'koa-bodyparser'
+import cors from 'koa2-cors'
+
 import {allowCollections, STATIC} from '../../shared/config/server'
-//import cors from 'koa2-cors'
+
 
 export default () => compose([
     compress(),
@@ -16,11 +18,11 @@ export default () => compose([
             json: ['application/x-javascript']
         }
     }),
-    etag(),
-    serve(STATIC),
+    serve(STATIC, {maxage: 100000}),
     favicon(),
     helmet(),
-   // cors(),
+    etag(),
+    cors(),
     logger()
 ])
 
