@@ -5,8 +5,9 @@ import {InitProps, root} from '../shared/config'
 
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-        .register('./sw.js', {scope: './'})
+
+
+    navigator.serviceWorker.register('/sw.js', {scope: '.'})
         .then(reg => {
             if (reg.installing) {
                 console.log('Service worker installing')
@@ -17,7 +18,10 @@ if ('serviceWorker' in navigator) {
             }
         })
         .catch(err => console.error(`Registration failed with ${err}`))
+
+
 }
+
 
 render(h(Shell, InitProps), root())
 
