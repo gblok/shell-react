@@ -47,7 +47,8 @@ self.addEventListener('fetch', e => {
 
     console.log('sw fetch')
 
-    if (e.request.url.startsWith(self.location.origin)) {
+    if (e.request.url.startsWith(self.location.origin) && e.request.method === 'GET') {
+
         e.respondWith(
             caches
                 .match(e.request)
@@ -59,6 +60,7 @@ self.addEventListener('fetch', e => {
                     .catch(err => console.error(err))
                 )
         )
+
     }
 
 })

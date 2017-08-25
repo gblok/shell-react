@@ -7,7 +7,7 @@ const headers = Object.create(null),
 
 const URI = tx => {
 
-    console.log({tx})
+   //console.log({tx})
 
     let {cid} = tx
     return `/api/${cid}`
@@ -18,7 +18,7 @@ export const fetch = async tx => {
 
 
 
-    console.log('fetch', {tx})
+   // console.log('fetch', {tx})
 
     let {
         method = 'get',
