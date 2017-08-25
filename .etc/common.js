@@ -92,7 +92,7 @@ export const Common = env => {
             }),
 
             new webpack.NoEmitOnErrorsPlugin(),
-            new BabiliPlugin({removeConsole: 1, removeDebugger: 1}, {comments: 0}),
+            new BabiliPlugin({removeConsole: 0, removeDebugger: 1}, {comments: 0}),
             new webpack.optimize.ModuleConcatenationPlugin
 
         ],
