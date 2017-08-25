@@ -1,66 +1,59 @@
 const
-    MAX_AGE = 86400000,
-    CACHE = {
-        name: 'v1',
-        urls: [
-            '/',
-            '/assets/css/default.css',
-            '/assets/js/vendor.js',
-            '/assets/js/client.js'
-        ]
-    }
+    RUNTIME = 'runtime',
+    PRECACHE = 'v1',
+    PRECACHE_URLS = [
+        '/',
+        './',
+        '/assets/css/default.css',
+        '/assets/js/vendor.js',
+        '/assets/js/client.js'
+    ]
 
 
 self.addEventListener('install', e => {
-
-    console.log('sw install')
+    console.log('sw install', e)
 
     e.waitUntil(
-        caches
-            .open(CACHE.name)
-            .then(cache => cache.addAll(CACHE.urls))
+        caches.open(PRECACHE)
+            .then(c => c.addAll(PRECACHE_URLS))
+            .then(() => self.skipWaiting())
     )
 })
 
+
 self.addEventListener('activate', e => {
+    console.log('sw activate', e)
 
-    console.log('sw activate')
-
-    const cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1']
+    const allowCaches = [PRECACHE, RUNTIME]
 
     e.waitUntil(
-        caches
-            .keys()
-            .then(cacheNames => Promise.all(cacheNames.map(cacheName => {
-                    if (cacheWhitelist.indexOf(cacheName) === -1)
-                        return caches.delete(cacheName)
-                })
-                )
-            )
+        caches.keys()
+            .then(c => allowCaches.filter(c => !allowCaches.includes(c)))
+            .then(toDelete => Promise
+                .all(toDelete.map(c => caches.delete(c)))
+                .then(() => self.clients.claim()))
     )
+
 })
 
 self.addEventListener('fetch', e => {
 
-    console.log('sw fetch')
+    console.log('sw fetch', e)
 
-    e.respondWith(
-        caches
-            .open('mysite-dynamic')
-            .then(function (cache) {
+    if (e.request.url.startsWith(self.location.origin)) {
+        e.respondWith(
+            caches
+                .match(e.request)
+                .then(r => r
+                    ? r
+                    : caches
+                        .open(RUNTIME)
+                        .then(c => fetch(e.request)
+                            .then(res => c
+                                .put(e.request, response.clone())
+                                .then(() => response)))
+                )
+        )
+    }
 
-                return cache
-                    .match(e.request)
-                    .then(response => {
-
-                        const fetchPromise = fetch(e.request)
-                            .then(function (networkResponse) {
-                                cache.put(e.request, networkResponse.clone())
-                                return networkResponse
-                            })
-
-                        return response || fetchPromise
-                    })
-            })
-    )
 })

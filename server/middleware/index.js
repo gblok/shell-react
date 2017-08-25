@@ -18,7 +18,7 @@ export default () => compose([
             json: ['application/x-javascript']
         }
     }),
-    serve(STATIC, {maxage: 100000}),
+    serve(STATIC),
     favicon(),
     helmet(),
     etag(),
@@ -26,6 +26,7 @@ export default () => compose([
     logger()
 ])
 
+//{maxage: 100000}
 
 export async function allowCid(ctx, next) {
 
