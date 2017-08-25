@@ -1,19 +1,17 @@
 const
-    RUNTIME = 'runtime',
-    PRECACHE = 'v1',
-    OFFLINE = 'offline',
-    OFFLINE_URLS = [
-        '/assets/css/default.css',
-        '/offline.html',
-    ],
-    PRECACHE_URLS = [
-        '/',
-        '/offline.html',
-        '/manifest.json',
-        '/assets/css/default.css',
-        '/assets/js/vendor.js',
-        '/assets/js/client.js'
-    ]
+    RUNTIME = {
+        name: 'runtime',
+    },
+    PRECACHE = {
+        name: 'v1',
+        urls: [
+            '/',
+            '/manifest.json',
+            '/assets/css/default.css',
+            '/assets/js/vendor.js',
+            '/assets/js/client.js'
+        ]
+    }
 
 
 self.addEventListener('install', e => {
@@ -21,8 +19,8 @@ self.addEventListener('install', e => {
 
     e.waitUntil(
         caches
-            .open(PRECACHE)
-            .then(c => c.addAll(PRECACHE_URLS))
+            .open(PRECACHE.name)
+            .then(c => c.addAll(PRECACHE.urls))
             .then(() => self.skipWaiting())
     )
 })
@@ -30,7 +28,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
     console.log('sw activate')
 
-    const allowCaches = [PRECACHE, RUNTIME]
+    const allowCaches = [PRECACHE.name, RUNTIME.name]
 
     e.waitUntil(
         caches.keys()
@@ -54,13 +52,10 @@ self.addEventListener('fetch', e => {
             caches
                 .match(e.request)
                 .then(r => r ? r : caches
-                    .open(RUNTIME)
+                    .open(RUNTIME.name)
                     .then(c => fetch(e.request)
-                        .then(res => c
-                            .put(e.request, res.clone())
-                            .then(() => res)))
+                        .then(res => c.put(e.request, res.clone()).then(() => res))).catch(err => console.error(err))
                 )
-                .catch(err => console.error(err))
         )
     }
 
