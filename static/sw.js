@@ -2,7 +2,7 @@ const
     RUNTIME = {
         name: 'runtime',
     },
-    PRECACHE = {
+    CACHE = {
         name: 'v1',
         urls: [
             '/',
@@ -19,8 +19,8 @@ self.addEventListener('install', e => {
 
     e.waitUntil(
         caches
-            .open(PRECACHE.name)
-            .then(c => c.addAll(PRECACHE.urls))
+            .open(CACHE.name)
+            .then(c => c.addAll(CACHE.urls))
             .then(() => self.skipWaiting())
     )
 })
@@ -28,7 +28,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
     console.log('sw activate')
 
-    const allowCaches = [PRECACHE.name, RUNTIME.name]
+    const allowCaches = [CACHE.name, RUNTIME.name]
 
     e.waitUntil(
         caches.keys()
@@ -54,7 +54,9 @@ self.addEventListener('fetch', e => {
                 .then(r => r ? r : caches
                     .open(RUNTIME.name)
                     .then(c => fetch(e.request)
-                        .then(res => c.put(e.request, res.clone()).then(() => res))).catch(err => console.error(err))
+                        .then(res => c.put(e.request, res.clone())
+                            .then(() => res)))
+                    .catch(err => console.error(err))
                 )
         )
     }
