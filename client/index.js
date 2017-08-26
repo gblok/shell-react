@@ -6,23 +6,23 @@ import {InitProps, root} from '../shared/config'
 
 if ('serviceWorker' in navigator) {
 
-
-    navigator.serviceWorker.register('/sw.js', {scope: '.'})
-        .then(reg => {
-
-
-            if (reg.installing) {
-                console.log(`Service worker installing, ${reg.scope}`)
-            } else if (reg.waiting) {
-                console.log(`Service worker installed`)
-            } else if (reg.active) {
-                console.log(`Service worker active`)
-            }
+    navigator.serviceWorker.register('/sw.js', {scope: '/'})
+        .then(reg => console.log(`sw register, ${reg.scope}`))
+        .catch(err => console.error(`registration failed with ${err}`))
 
 
-        })
-        .catch(err => console.error(`Registration failed with ${err}`))
+    document.addEventListener('beforeinstallprompt', e => {
 
+        e.userChoice
+            .then(choiceResult => {
+
+                console.log('choiceResult', choiceResult.outcome)
+
+                choiceResult.outcome == 'dismissed'
+                    ? console.log('User cancelled home screen install')
+                    : console.log('User added to home screen')
+            })
+    })
 
 }
 

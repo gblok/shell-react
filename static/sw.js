@@ -15,6 +15,8 @@ const
 
 
 self.addEventListener('install', e => {
+
+    //let timeStamp = Date.now()
     console.log('sw install')
 
     e.waitUntil(
@@ -36,7 +38,6 @@ self.addEventListener('activate', e => {
             .then(toDelete => Promise
                 .all(toDelete.map(c => caches.delete(c)))
                 .then(() => self.clients.claim()))
-            .catch(err => console.error(err))
     )
 
 
@@ -47,20 +48,21 @@ self.addEventListener('fetch', e => {
 
     console.log('sw fetch')
 
-    if (e.request.url.startsWith(self.location.origin) && e.request.method === 'GET') {
+
+    if (req.url.startsWith(self.location.origin)) {
+
+        const req = e.request.clone()
 
         e.respondWith(
             caches
-                .match(e.request)
-                .then(r => r ? r : caches
-                    .open(RUNTIME.name)
-                    .then(c => fetch(e.request)
-                        .then(res => c.put(e.request, res.clone())
-                            .then(() => res)))
-                    .catch(err => console.error(err))
+                .match(req)
+                .then(res => res
+                    ? res
+                    : caches
+                        .open(RUNTIME.name)
+                        .then(cache => fetch(req).then(res => cache.put(req, res.clone())))
                 )
         )
-
     }
 
 })
