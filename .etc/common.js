@@ -41,17 +41,6 @@ export const CommonLoaders = opts => [
         include: svg,
         use: [
             {loader: 'svg-sprite-loader'},
-            // {
-            //     loader: 'svgo-loader',
-            //     options: {
-            //         plugins: [
-            //             {removeXMLNS: true},
-            //             {removeTitle: true},
-            //             {convertColors: {shorthex: true}},
-            //             {convertPathData: true}
-            //         ]
-            //     }
-            // }
         ]
     }
 ]
