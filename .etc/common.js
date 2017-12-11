@@ -41,7 +41,7 @@ export const CommonLoaders = opts => [
         include: svg,
         use: [
             {loader: 'svg-sprite-loader'},
-            {
+            /*{
                 loader: 'svgo-loader',
                 options: {
                     plugins: [
@@ -51,7 +51,7 @@ export const CommonLoaders = opts => [
                         {convertPathData: true}
                     ]
                 }
-            }
+            }*/
         ]
     }
 ]
