@@ -34,7 +34,7 @@ export default env => {
             port: DEV_PORT,
             historyApiFallback: {index: 'shell.html'},
             allowedHosts: ['127.0.0.1',],
-            proxy: {'/api': 'http://localhost:8787'}
+            proxy: {'/api': 'http://localhost:9191'}
         }
     }
 }
