@@ -6,21 +6,18 @@ export default env => {
 
     return {
         ...Common(env),
+        mode:'development',
         entry: {
             client: ['./client', './client/less/themes/default', './client/sprite'],
         },
         module: {
-            loaders: [
+            rules: [
                 ...CommonLoaders(),
                 {
                     test: /\.less$/,
                     exclude: /node_modules/,
                     include: /less/,
                     use: [
-
-                        // {loader: 'file-loader', options: {name: '/assets/css/[name].css'}},
-                        // {loader: 'less-loader', options: {paths: shared}}
-
                         {loader: 'style-loader'},
                         {loader: 'css-loader'},
                         {loader: 'less-loader', options: {paths: shared}}

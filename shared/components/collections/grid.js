@@ -12,37 +12,39 @@ export default class extends Component {
 
         let {sort, desc} = this.state,
             {cols} = tx,
-            isSortable = coll.count() > 1,
-            row = cols.map(col => {
-
-                let {label, field, align = null} = col,
-                    isActive = sort === field,
-                    colName = field.toLowerCase(),
-                    className = isActive ? `active _${colName}` : colName,
-                    isActions = colName === '_actions',
-                    onMouseDown = isActions ? null : isSortable ? e => this.setState({sort: field, desc: !desc}) : null,
-                    icon = isActions ? null : h(Icon, {
-                            id:
-                                isActive
-                                    ? desc ? 'arrow-down' : 'arrow'
-                                    : 'arrow-down'
-                        }
-                    )
+            isSortable = coll.count() > 1
 
 
-                if (isSortable)
-                    className += ` sort`
+        const row = cols.map(col => {
+
+            let {label, field, align = null} = col,
+                isActive = sort === field,
+                colName = field.toLowerCase(),
+                className = isActive ? `active _${colName}` : colName,
+                isActions = colName === '_actions',
+                onMouseDown = isActions ? null : isSortable ? e => this.setState({sort: field, desc: !desc}) : null,
+                icon = isActions ? null : h(Icon, {
+                        id:
+                            isActive
+                                ? desc ? 'arrow-down' : 'arrow'
+                                : 'arrow-down'
+                    }
+                )
 
 
-                if (align)
-                    className += ` ${align}`
+            if (isSortable)
+                className += ` sort`
 
 
-                return h('th', {className, onMouseDown}, [
-                    h('span', label),
-                    isSortable ? icon : null
-                ])
-            })
+            if (align)
+                className += ` ${align}`
+
+
+            return h('th', {className, onMouseDown}, [
+                h('span', label),
+                isSortable ? icon : null
+            ])
+        })
 
         return h('tr', row)
     }
@@ -53,8 +55,12 @@ export default class extends Component {
         let {cols, cid} = tx,
             dom = []
 
+        console.log({cols}, {rows})
+
         for (let doc of rows.data()) {
-            let row = cols.map(col => {
+
+
+           let row = cols.map(col => {
 
                 let {label, field, format = null, align = null} = col,
                     colName = field.toLowerCase(),
@@ -89,6 +95,12 @@ export default class extends Component {
 
                 return h('td', {className, 'data-label': label}, [h('span', [cell])])
             })
+
+
+           //  cols.map(console.log)
+           //
+           // let row = null
+
             dom.push(h('tr', row))
         }
 
@@ -112,9 +124,10 @@ export default class extends Component {
 
 
             let {legend = '', cid} = tx,
-                isEmpty = !Boolean(coll.count()),
-                head = h('thead', [this.buildHead(tx, coll)]),
-                body = h('tbody', this.buildBody(tx, coll))
+                isEmpty = !Boolean(coll.count())
+
+            let head = h('thead', [this.buildHead(tx, coll)])
+            let body = h('tbody', this.buildBody(tx, coll))
 
             if (isEmpty)
                 msg = h('success', 'Empty Collection')
@@ -122,7 +135,7 @@ export default class extends Component {
 
             header = h('header', [
                 h('h2', [legend || 'legend', h('amount', coll.count())]),
-                h('button', {key:'createItem', onMouseDown: e => CREATE(cid)}, 'create')
+                h('button', {key: 'createItem', onMouseDown: e => CREATE(cid)}, 'create')
             ])
 
             table = h('table', {className: 'grid'}, [head, body])

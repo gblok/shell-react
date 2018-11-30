@@ -2,7 +2,6 @@ import webpack from 'webpack'
 import LessCleanCSS from 'less-plugin-clean-css'
 import LessPluginAutoPrefix from 'less-plugin-autoprefix'
 import {exclude, output, svg, vendor, IS_CLIENT, IS_SERVER} from '../shared/config'
-import BabiliPlugin from 'babili-webpack-plugin'
 
 export const CommonLoaders = opts => [
     {
@@ -14,23 +13,17 @@ export const CommonLoaders = opts => [
         ]
     },
     {
-        test: /\.(es6|js|jsx)$/,
+        test: /\.js$/,
         exclude,
         use: {
             loader: 'babel-loader',
             options: {
-                presets: [
-                    //'flow',
-                    ['env', {
-                        //'modules': false,
-                        'loose': true
-                    }]
-                ],
+                presets: [['@babel/preset-env', {'loose': true}]],
                 cacheDirectory: 'tmp',
                 plugins: [
-                    'transform-decorators-legacy',
-                    'transform-class-properties',
-                    'transform-object-rest-spread'
+                    ['@babel/plugin-proposal-decorators', {'legacy': true}],
+                    ['@babel/plugin-proposal-class-properties', {'loose': true}],
+                    '@babel/plugin-proposal-object-rest-spread'
                 ]
             }
         }
@@ -75,13 +68,10 @@ export const Common = env => {
             new webpack.DefinePlugin({
                 IS_CLIENT,
                 IS_SERVER,
-                'process.env': {
-                    'NODE_ENV': JSON.stringify(env || 'development')
-                }
+                'process.env': {'NODE_ENV': JSON.stringify(env || 'development')}
             }),
 
-            new webpack.NoEmitOnErrorsPlugin(),
-            new BabiliPlugin({removeConsole: 0, removeDebugger: 1}, {comments: 0}),
+            new webpack.NoEmitOnErrorsPlugin,
             new webpack.optimize.ModuleConcatenationPlugin
 
         ],

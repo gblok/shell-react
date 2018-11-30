@@ -1,9 +1,9 @@
 {
   "name": "shell-react",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": true,
   "dependencies": {
-    "eventemitter2": "",
+    "eventemitter3": "",
     "import-dir": "",
     "koa": "",
     "koa-bodyparser": "",
@@ -24,18 +24,18 @@
     "react-dom": "",
     "react-hyperscript": "",
     "superagent": "",
-    "uws": "",
     "validator": "",
     "webfontloader": ""
   },
   "devDependencies": {
-    "babel-cli": "",
+    "@babel/core": "",
+    "@babel/plugin-proposal-class-properties": "",
+    "@babel/plugin-proposal-object-rest-spread": "",
+    "@babel/plugin-proposal-decorators": "",
+    "@babel/polyfill": "",
+    "@babel/preset-env": "",
+    "@babel/register": "",
     "babel-loader": "",
-    "babel-plugin-transform-class-properties": "",
-    "babel-plugin-transform-decorators-legacy": "",
-    "babel-plugin-transform-object-rest-spread": "",
-    "babel-preset-env": "",
-    "babili-webpack-plugin": "",
     "css-loader": "",
     "file-loader": "",
     "less": "",
@@ -45,16 +45,20 @@
     "nodemon": "",
     "pug": "",
     "style-loader": "",
+    "svgo": "",
     "svg-sprite-loader": "",
     "svgo-loader": "",
     "webpack": "",
+    "webpack-cli": "",
     "webpack-dev-server": ""
   },
   "babel": {
+    "compact": true,
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
+          "loose": true,
           "targets": {
             "node": "current"
           }
@@ -62,18 +66,28 @@
       ]
     ],
     "plugins": [
-      "transform-decorators-legacy",
-      "transform-class-properties",
-      "transform-object-rest-spread"
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ],
+      "@babel/plugin-proposal-object-rest-spread"
     ]
   },
   "scripts": {
-    "process": "pm2 restart ./.etc/pm2.yml",
-    "pm2": "pm2 restart --env production ./.etc/pm2.yml",
-    "nodemon": "nodemon --config ./.etc/nodemon.json ./.etc/server.js",
-    "prod": "webpack --config ./.etc/prod.babel.js --env production",
-    "dev": "webpack-dev-server --config ./.etc/dev.babel.js",
-    "dll": "webpack --config ./.etc/dll.babel.js --env production",
+    "process": "pm2 restart .etc/pm2.yml",
+    "pm2": "pm2 restart --env production .etc/pm2.yml",
+    "api": "nodemon --config .etc/nodemon.json ./.etc/server.js",
+    "prod": "webpack-cli --config .etc/prod.babel.js",
+    "dev": "webpack-dev-server --config .etc/dev.babel.js",
+    "dll": "webpack-cli --config .etc/dll.babel.js",
     "svgo": "svgo -f ./static/svg --config=./.etc/svgo.yml"
   }
 }

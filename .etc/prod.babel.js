@@ -8,6 +8,7 @@ export default env => {
         // stats: "detailed",
         node: {fs: 'empty'},
         performance: false,
+        mode:'production',
         entry: {
             client: ['./client','./client/sprite'],
             themes: ['./client/less/themes/default']

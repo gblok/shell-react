@@ -13,11 +13,7 @@ import {allowCollections, STATIC} from '../../shared/config/server'
 
 export default () => compose([
     compress(),
-    bodyParser({
-        extendTypes: {
-            json: ['application/x-javascript']
-        }
-    }),
+    bodyParser({extendTypes: {json: ['application/x-javascript']}}),
     serve(STATIC),
     favicon(),
     helmet(),
@@ -29,7 +25,6 @@ export default () => compose([
 //{maxage: 100000}
 
 export async function allowCid(ctx, next) {
-
     allowCollections.includes(ctx.params.cid)
         ? await next()
         : (ctx.throw(400), ctx.body = Object.create(null))

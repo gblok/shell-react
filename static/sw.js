@@ -48,11 +48,8 @@ self.addEventListener('fetch', e => {
 
     console.log('sw fetch')
 
-
     if (req.url.startsWith(self.location.origin)) {
-
         const req = e.request.clone()
-
         e.respondWith(
             caches
                 .match(req)

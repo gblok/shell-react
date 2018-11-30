@@ -1,9 +1,10 @@
-import 'babel-polyfill'
+import '@babel/polyfill'
 import {h, render} from '../shared/modules'
 import {Shell} from '../shared/components'
 import {InitProps, root} from '../shared/config'
 
 
+/*
 if ('serviceWorker' in navigator) {
 
     navigator.serviceWorker.register('/sw.js', {scope: '/'})
@@ -25,6 +26,7 @@ if ('serviceWorker' in navigator) {
     })
 
 }
+*/
 
 
 render(h(Shell, InitProps), root())

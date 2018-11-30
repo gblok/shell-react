@@ -1,8 +1,7 @@
-import {eeOpts} from '../config'
-import EventEmitter from 'eventemitter2'
+import EventEmitter from 'eventemitter3'
 import {fromEvent} from 'most'
 
-export const hub = new EventEmitter(eeOpts)
+export const hub = new EventEmitter
 
 export const hub$ = fromEvent('PUSH', hub).multicast()
 export const app$ = fromEvent('APP', hub).multicast()

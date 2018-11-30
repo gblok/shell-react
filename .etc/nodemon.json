@@ -15,8 +15,8 @@
     "NODE_ENV": "development",
     "DEBUG": false
   },
-  "ext": "js json pug",
+  "ext": "js",
   "execMap": {
-    "js": "babel-node"
+    "js": "node"
   }
 }
