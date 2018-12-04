@@ -3,9 +3,7 @@ import {dbID, EMPTY} from '../../../shared/config'
 import {allowCid} from '../../middleware'
 
 const removeMeta = doc => {
-
     let res = Object.assign({}, doc)
-
     Reflect.deleteProperty(res, '$loki')
     Reflect.deleteProperty(res, 'meta')
     return res

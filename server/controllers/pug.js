@@ -1,14 +1,14 @@
 import pug from 'pug'
-import path from 'path'
+import {resolve} from 'path'
 import {VIEWS} from '../../shared/config/server'
-import {renderToString} from 'react-dom/server'
 import {Shell} from '../../shared/components'
 import {h, router} from '../../shared/modules'
 import {InitProps} from '../../shared/config'
+import {renderToString} from 'react-dom/server'
 
 
 const
-    viewPath = path.resolve(VIEWS, 'base.pug'),
+    viewPath = resolve(VIEWS, 'base.pug'),
     tpl = pug.compileFile(viewPath, {doctype: 'html'})
 
 

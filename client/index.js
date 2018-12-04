@@ -1,35 +1,35 @@
 import '@babel/polyfill'
-import {h, render} from '../shared/modules'
+import {h, render, hydrate} from '../shared/modules'
 import {Shell} from '../shared/components'
 import {InitProps, root} from '../shared/config'
 
 
-/*
-if ('serviceWorker' in navigator) {
 
-    navigator.serviceWorker.register('/sw.js', {scope: '/'})
-        .then(reg => console.log(`sw register, ${reg.scope}`))
-        .catch(err => console.error(`registration failed with ${err}`))
+// if ('serviceWorker' in navigator) {
+//
+//     navigator.serviceWorker.register('/sw.js', {scope: '/'})
+//         .then(reg => console.log(`sw register, ${reg.scope}`))
+//         .catch(err => console.error(`registration failed with ${err}`))
+//
+//
+//     document.addEventListener('beforeinstallprompt', e => {
+//
+//         e.userChoice
+//             .then(choiceResult => {
+//
+//                 console.log('choiceResult', choiceResult.outcome)
+//
+//                 choiceResult.outcome == 'dismissed'
+//                     ? console.log('User cancelled home screen install')
+//                     : console.log('User added to home screen')
+//             })
+//     })
+//
+// }
 
 
-    document.addEventListener('beforeinstallprompt', e => {
 
-        e.userChoice
-            .then(choiceResult => {
-
-                console.log('choiceResult', choiceResult.outcome)
-
-                choiceResult.outcome == 'dismissed'
-                    ? console.log('User cancelled home screen install')
-                    : console.log('User added to home screen')
-            })
-    })
-
-}
-*/
-
-
-render(h(Shell, InitProps), root())
+hydrate(h(Shell, InitProps), root())
 
 
 // {scope: '/', insecure: true}
