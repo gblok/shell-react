@@ -4,7 +4,7 @@ import {VIEWS} from '../../shared/config/server'
 import {Shell} from '../../shared/components'
 import {h, router} from '../../shared/modules'
 import {InitProps} from '../../shared/config'
-import {renderToString} from 'react-dom/server'
+import {renderToStaticMarkup} from 'react-dom/server'
 
 
 const
@@ -20,7 +20,7 @@ export default () => async ctx => {
 
     router.mapper({params})
 
-    let root = await renderToString(h(Shell, InitProps))
+    let root = await renderToStaticMarkup(h(Shell, InitProps))
 
     ctx.body = await tpl({root})
 

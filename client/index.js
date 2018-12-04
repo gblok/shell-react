@@ -1,5 +1,5 @@
 import '@babel/polyfill'
-import {h, render, hydrate} from '../shared/modules'
+import {h,render , hydrate} from '../shared/modules'
 import {Shell} from '../shared/components'
 import {InitProps, root} from '../shared/config'
 
@@ -29,7 +29,7 @@ import {InitProps, root} from '../shared/config'
 
 
 
-hydrate(h(Shell, InitProps), root())
+render(h(Shell, InitProps), root())
 
 
 // {scope: '/', insecure: true}
