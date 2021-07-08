@@ -11,3 +11,4 @@ package-lock.json
 *.loki
 *.db
 *.log
+app.*

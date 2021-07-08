@@ -1,56 +1,63 @@
 const
-    PRECACHE = 'v1',
-    RUNTIME = 'runtime',
-    PRECACHE_URLS = [
-        '/',
-        '/offline.html',
-        '/assets/css/default.css',
-        '/assets/js/vendor.js',
-        '/assets/js/client.js'
-    ]
+    RUNTIME = {
+        name: 'runtime',
+    },
+    CACHE = {
+        name: 'v1',
+        urls: [
+            '/',
+            '/manifest.json',
+            '/assets/css/default.css',
+            '/assets/js/vendor.js',
+            '/assets/js/client.js'
+        ]
+    }
 
 
 self.addEventListener('install', e => {
-    console.log('sw install', e)
+
+    //let timeStamp = Date.now()
+    console.log('sw install')
 
     e.waitUntil(
         caches
-            .open(PRECACHE)
-            .then(cache => cache.addAll(PRECACHE_URLS))
-            .then(self.skipWaiting())
+            .open(CACHE.name)
+            .then(c => c.addAll(CACHE.urls))
+            .then(() => self.skipWaiting())
     )
 })
-self.addEventListener('activate', e => {
-    console.log('sw activate', e)
 
-    const currentCaches = [PRECACHE, RUNTIME]
+self.addEventListener('activate', e => {
+    console.log('sw activate')
+
+    const allowCaches = [CACHE.name, RUNTIME.name]
 
     e.waitUntil(
         caches.keys()
-            .then(cacheNames => cacheNames.filter(cacheName => !currentCaches.includes(cacheName)))
-            .then(cachesToDelete => Promise
-                .all(cachesToDelete.map(cacheToDelete => caches.delete(cacheToDelete)))
+            .then(c => allowCaches.filter(c => !allowCaches.includes(c)))
+            .then(toDelete => Promise
+                .all(toDelete.map(c => caches.delete(c)))
                 .then(() => self.clients.claim()))
     )
 
+
 })
+
 
 self.addEventListener('fetch', e => {
 
-    console.log('sw fetch', e)
+    console.log('sw fetch')
 
-    if (e.request.url.startsWith(self.location.origin)) {
+    if (req.url.startsWith(self.location.origin)) {
+        const req = e.request.clone()
         e.respondWith(
             caches
-                .match(e.request)
-                .then(cachedResponse => cachedResponse
-                    ? cachedResponse
+                .match(req)
+                .then(res => res
+                    ? res
                     : caches
-                        .open(RUNTIME)
-                        .then(cache => fetch(e.request)
-                            .then(response => cache
-                                .put(e.request, response.clone())
-                                .then(() => response)))
+                        .open(RUNTIME.name)
+                        .then(cache => fetch(req).then(res => cache.put(req, res.clone())))
                 )
         )
     }

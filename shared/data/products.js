@@ -1,16 +1,18 @@
+import {guid} from '../modules'
+
 export default [
     {
-        id: '1',
+        id: guid(),
         name: 'Prod 1',
         color: 'red',
     },
     {
-        id: '2',
+        id: guid(),
         name: 'Prod 2',
         color: 'red',
     },
     {
-        id: '3',
+        id: guid(),
         name: 'Prod 3',
         color: 'red',
     },

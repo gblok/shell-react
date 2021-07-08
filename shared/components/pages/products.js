@@ -21,6 +21,7 @@ export default props => {
             return h(PageError, {message: 'Page Not Found'})
     }
 
+    console.log('PAGE products')
 
     return action
         ? allow.includes(action)

@@ -6,21 +6,18 @@ export default env => {
 
     return {
         ...Common(env),
+        mode:'development',
         entry: {
             client: ['./client', './client/less/themes/default', './client/sprite'],
         },
         module: {
-            loaders: [
+            rules: [
                 ...CommonLoaders(),
                 {
                     test: /\.less$/,
                     exclude: /node_modules/,
                     include: /less/,
                     use: [
-
-                        // {loader: 'file-loader', options: {name: '/assets/css/[name].css'}},
-                        // {loader: 'less-loader', options: {paths: shared}}
-
                         {loader: 'style-loader'},
                         {loader: 'css-loader'},
                         {loader: 'less-loader', options: {paths: shared}}
@@ -34,7 +31,7 @@ export default env => {
             port: DEV_PORT,
             historyApiFallback: {index: 'shell.html'},
             allowedHosts: ['127.0.0.1',],
-            proxy: {'/api': 'http://localhost:8787'}
+            proxy: {'/api': 'http://localhost:9191'}
         }
     }
 }

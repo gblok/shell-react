@@ -11,7 +11,7 @@ export default class extends Component {
             error = isInvalid ? h('error', errors ? errors.values().next().value : 'error') : null
 
 
-        console.log({val})
+        //console.log({val})
 
 
         let onChange = e => {

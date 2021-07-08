@@ -62,6 +62,8 @@ export const checkSid = (tx, state) => {
 
 export const handler = (tx, res = null) => {
 
+
+
     if (res) {
 
         let {cid, force = false} = tx,
